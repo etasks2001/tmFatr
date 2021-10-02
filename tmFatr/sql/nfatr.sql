@@ -189,7 +189,7 @@ CREATE FUNCTION create_id_emit_serie_sequence() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 begin
-  --execute format('drop sequence id_emit_%s_serie_%s', NEW.id_emit, NEW.serie, NEW.inicial, NEW.final );
+  execute format('drop sequence if exists id_emit_%s_serie_%s', NEW.id_emit, NEW.serie, NEW.nnf_inicial, NEW.nnf_final );
   execute format('create sequence id_emit_%s_serie_%s minvalue %s  maxvalue %s', NEW.id_emit, NEW.serie, NEW.nnf_inicial, NEW.nnf_final );
   return NEW;
 end
@@ -213,8 +213,9 @@ insert into emit(CNPJ,xNome,xFant,xLgr,nro,xCpl,xBairro,cMun,xMun,UF,CEP,cPais,x
 
 
 
-insert into serie(id_emit, serie, nnf_inicial, nnf_final) values (1,'0', 1, 999999999);
-insert into serie(id_emit, serie, nnf_inicial, nnf_final) values (1,'1', 5555, 999999999);
+insert into serie(id_emit, serie, nnf_inicial, nnf_final) values (1,0, 1, 999999999);
+insert into serie(id_emit, serie, nnf_inicial, nnf_final) values (1,1, 5555, 999999999);
+--insert into serie(id_emit, serie, nnf_inicial, nnf_final) values (1,55, 1555, 999999999);
 
 
 
@@ -242,5 +243,5 @@ select * from nf  ;
 
 select * from serie;
 
-delete from serie where serie = 55
+--delete from serie where serie = 55
 

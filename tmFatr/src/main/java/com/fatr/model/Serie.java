@@ -15,6 +15,9 @@ public class Serie implements Serializable {
 	private Integer nnf_inicial;
 	private Integer nnf_final;
 
+	public Serie() {
+	}
+
 	public Serie(SerieId id, Integer nnf_inicial, Integer nnf_final) {
 		super();
 		this.id = id;
