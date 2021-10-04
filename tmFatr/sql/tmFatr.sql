@@ -51,7 +51,7 @@ create table emit(
 	IM varchar(15) not null, 
 	CNAE varchar(7) null,
 	CRT varchar(1) not null,
-	nf_serie_atual smallint not null,
+	nf_serie_atual int not null,
 	ultima_nnf int not null,
 	primary key (id),
 	unique (CNPJ)
@@ -74,41 +74,41 @@ create table nf(
   sk serial primary key,
   id_emit integer references emit,
 
-  cnpj char(14) not null,
-  serie smallint not null, --0 a 999
+  cnpj varchar(14) not null,
+  serie int not null, --0 a 999
   nNF int not null, --1 a 999.999.999
   
-  ind_emit char(1) not null, /*0-Emissão própria;
+  ind_emit varchar(1) not null, /*0-Emissão própria;
                       1-Terceiros
                       @CAMPO ICMS IPI
                       */
   
   versao varchar(4) not null,
   id varchar(44) not null, -- chave NF-e
-  cUF char(2) not null, -- CODIGO UF
-  cNF char(8) not null, --ALEATÓRIO
+  cUF varchar(2) not null, -- CODIGO UF
+  cNF varchar(8) not null, --ALEATÓRIO
   natOp varchar(60) not null, 
-  mod char(2) not null, /*55-NF-e*/
+  mod varchar(2) not null, /*55-NF-e*/
   
   
   dhEmi timestamp not null,
   dhSaiEnt timestamp null,
-  tpNF char(1) not null, /*0-Entrada
+  tpNF varchar(1) not null, /*0-Entrada
                            1-Saída
 			   @CAMPO ICMS IPI - "IND_OPER"
                            */
 
-  idDest char(1) not null,/*1-Operação interna;
+  idDest varchar(1) not null,/*1-Operação interna;
                             2-Operação interestadual;
                             3-Operação com exterior*/
-  cMunFG char(7) not null, --Código município
-  tpImp char(1) not null, /*0-Sem geração de DANFE;
+  cMunFG varchar(7) not null, --Código município
+  tpImp varchar(1) not null, /*0-Sem geração de DANFE;
                             1-DANFE normal, Retrato;
                             2-DANFE normal, Paisagem;
                             3-DANFE Simplificado;
                             4-DANFE NFC-e;
                             5-DANFE NFC-e*/
-  tpEmis char(1) not null, /*1-Emissão normal (não em contingência);
+  tpEmis varchar(1) not null, /*1-Emissão normal (não em contingência);
                              2-Contingência FS-IA, com impressão do DANFE em formulário de segurança;
                              3-Contingência SCAN (Sistema de Contingência do Ambiente Nacional);
                              4-Contingência DPEC (Declaração Prévia da Emissão em Contingência);
@@ -118,26 +118,26 @@ create table nf(
                              9-Contingência off-line da NFC-e (as demais opções de contingência são válidas também para a NFC-e).*/
 
 
-  cDV char(1) not null, --DV da Chave de Acesso da NF-e
-  tpAmb char(1) not null, /*1-Produção
+  cDV varchar(1) not null, --DV da Chave de Acesso da NF-e
+  tpAmb varchar(1) not null, /*1-Produção
                             2-Homologação*/
-  finNFe char(1) not null, /*1-NF-e normal;
+  finNFe varchar(1) not null, /*1-NF-e normal;
                              2-NF-e complementar;
                              3-NF-e de ajuste;
                              4-Devolução de mercadoria*/
-  indFinal char(1) not null, /*0-Normal;
+  indFinal varchar(1) not null, /*0-Normal;
                                1-Consumidor final;*/
 
 
-  indPres char(1) not null, /*0-Não se aplica (por exemplo, Nota Fiscal complementar ou de ajuste);
+  indPres varchar(1) not null, /*0-Não se aplica (por exemplo, Nota Fiscal complementar ou de ajuste);
                               1-Operação presencial;
                               2-Operação não presencial, pela Internet;
                               3-Operação não presencial, Teleatendimento;
                               4-NFC-e em operação com entrega a domicílio;
                               9-Operação não presencial, outros.*/
 
-  indIntermed char(1) null, 
-  procEmi char(1) not null, /*0-Emissão de NF-e com aplicativo do contribuinte;
+  indIntermed varchar(1) null, 
+  procEmi varchar(1) not null, /*0-Emissão de NF-e com aplicativo do contribuinte;
                               1-Emissão de NF-e avulsa pelo Fisco;
                               2-Emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, através do site do Fisco;
                               3-Emissão NF-e pelo contribuinte com aplicativo fornecido pelo Fisco*/
