@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.type.ShortType;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Emit")
 public class Emit implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,7 +28,7 @@ public class Emit implements Serializable {
     private String IM;
     private String CNAE;
     private String CRT;
-    private ShortType nf_serie_atual;
+    private Integer nf_serie_atual;
     private Integer ultima_nnf;
 
     public Integer getId() {
@@ -67,7 +67,7 @@ public class Emit implements Serializable {
 	return CRT;
     }
 
-    public ShortType getNf_serie_atual() {
+    public Integer getNf_serie_atual() {
 	return nf_serie_atual;
     }
 
@@ -119,7 +119,7 @@ public class Emit implements Serializable {
 	CRT = cRT;
     }
 
-    public void setNf_serie_atual(ShortType nf_serie_atual) {
+    public void setNf_serie_atual(Integer nf_serie_atual) {
 	this.nf_serie_atual = nf_serie_atual;
     }
 

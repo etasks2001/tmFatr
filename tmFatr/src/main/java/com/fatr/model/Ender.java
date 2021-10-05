@@ -7,12 +7,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Ender implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public Ender() {
 
-    }
-
-    public static void main(String[] args) {
-	Character c = '1';
     }
 
     private String xLgr;
@@ -114,90 +112,4 @@ public class Ender implements Serializable {
     public void setFone(String fone) {
 	this.fone = fone;
     }
-
-    @Override
-    public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((CEP == null) ? 0 : CEP.hashCode());
-	result = prime * result + ((UF == null) ? 0 : UF.hashCode());
-	result = prime * result + ((cMun == null) ? 0 : cMun.hashCode());
-	result = prime * result + ((cPais == null) ? 0 : cPais.hashCode());
-	result = prime * result + ((fone == null) ? 0 : fone.hashCode());
-	result = prime * result + ((nro == null) ? 0 : nro.hashCode());
-	result = prime * result + ((xBairro == null) ? 0 : xBairro.hashCode());
-	result = prime * result + ((xCpl == null) ? 0 : xCpl.hashCode());
-	result = prime * result + ((xLgr == null) ? 0 : xLgr.hashCode());
-	result = prime * result + ((xMun == null) ? 0 : xMun.hashCode());
-	result = prime * result + ((xPais == null) ? 0 : xPais.hashCode());
-	return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Ender other = (Ender) obj;
-	if (CEP == null) {
-	    if (other.CEP != null)
-		return false;
-	} else if (!CEP.equals(other.CEP))
-	    return false;
-	if (UF == null) {
-	    if (other.UF != null)
-		return false;
-	} else if (!UF.equals(other.UF))
-	    return false;
-	if (cMun == null) {
-	    if (other.cMun != null)
-		return false;
-	} else if (!cMun.equals(other.cMun))
-	    return false;
-	if (cPais == null) {
-	    if (other.cPais != null)
-		return false;
-	} else if (!cPais.equals(other.cPais))
-	    return false;
-	if (fone == null) {
-	    if (other.fone != null)
-		return false;
-	} else if (!fone.equals(other.fone))
-	    return false;
-	if (nro == null) {
-	    if (other.nro != null)
-		return false;
-	} else if (!nro.equals(other.nro))
-	    return false;
-	if (xBairro == null) {
-	    if (other.xBairro != null)
-		return false;
-	} else if (!xBairro.equals(other.xBairro))
-	    return false;
-	if (xCpl == null) {
-	    if (other.xCpl != null)
-		return false;
-	} else if (!xCpl.equals(other.xCpl))
-	    return false;
-	if (xLgr == null) {
-	    if (other.xLgr != null)
-		return false;
-	} else if (!xLgr.equals(other.xLgr))
-	    return false;
-	if (xMun == null) {
-	    if (other.xMun != null)
-		return false;
-	} else if (!xMun.equals(other.xMun))
-	    return false;
-	if (xPais == null) {
-	    if (other.xPais != null)
-		return false;
-	} else if (!xPais.equals(other.xPais))
-	    return false;
-	return true;
-    }
-
 }

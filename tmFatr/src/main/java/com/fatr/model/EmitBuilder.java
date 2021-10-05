@@ -1,7 +1,5 @@
 package com.fatr.model;
 
-import org.hibernate.type.ShortType;
-
 public class EmitBuilder {
 
     private Emit emit;
@@ -64,7 +62,7 @@ public class EmitBuilder {
 	return this;
     }
 
-    public EmitBuilder addNf_serie_atual(ShortType nf_serie_atual) {
+    public EmitBuilder addNf_serie_atual(Integer nf_serie_atual) {
 	this.emit.setNf_serie_atual(nf_serie_atual);
 	return this;
     }

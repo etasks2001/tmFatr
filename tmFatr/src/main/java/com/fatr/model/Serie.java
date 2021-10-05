@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = "Serie")
 public class Serie implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @EmbeddedId
     private SerieId id;
     private Integer nnf_inicial;
