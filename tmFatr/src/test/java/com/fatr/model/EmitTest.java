@@ -25,7 +25,7 @@ public class EmitTest {
     private String fone = "12345789";
     private String cNPJ = "12340000000000";
     private String xNome = "Empresa";
-    private String xFant = "";
+    private String xFant = "fdas";
     private String iE = "111222333444";
     private String iEST = "";
     private String iM = "12345";
