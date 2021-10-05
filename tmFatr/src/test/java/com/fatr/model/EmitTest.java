@@ -29,7 +29,7 @@ public class EmitTest {
     private String iE = "111222333444";
     private String iEST = "";
     private String iM = "12345";
-    private String cNAE = "1234567fdasfd";
+    private String cNAE = "1234567";
     private String cRT = "1";
     private Integer nf_serie_atual = 0;
     private Integer ultima_nnf = 154;
