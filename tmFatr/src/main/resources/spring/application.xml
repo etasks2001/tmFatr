@@ -30,6 +30,6 @@
 
 	<bean id="entityManager" factory-bean="persistence" factory-method="createEntityManager" class="javax.persistence.EntityManager"/>
 
-
+<bean id="serieDao" class="com.fatr.dao.SerieDao"/>
 
 </beans>

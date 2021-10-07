@@ -6,12 +6,19 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fatr.util.JPAUtil;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "/spring/test-application.xml")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmitTest {
+    @Autowired
+    private EntityManager em;
+
     private String xLgr = "Rua sem saida";
     private String nro = "150";
     private String xCpl = "fdas";
@@ -47,18 +54,15 @@ public class EmitTest {
 
     @Test
     public void testA_insert() {
-	EntityManager em = JPAUtil.getEntityManager();
 	Emit emit = this.createEmit();
 	em.getTransaction().begin();
 	em.persist(emit);
-
 	em.getTransaction().commit();
-	id = emit.getId();
-	em.close();
 
-	em = JPAUtil.getEntityManager();
+	id = emit.getId();
+	em.detach(emit);
+
 	emit = em.find(Emit.class, id);
-	em.close();
 
 	MatcherAssert.assertThat(emit, Matchers.notNullValue());
 	MatcherAssert.assertThat(emit.getId(), Matchers.notNullValue());
@@ -91,13 +95,12 @@ public class EmitTest {
 
     @Test
     public void testB_delete() {
-	EntityManager em = JPAUtil.getEntityManager();
 	Emit emit = em.find(Emit.class, id);
 
 	em.getTransaction().begin();
 	em.remove(emit);
 	em.getTransaction().commit();
-	em.close();
+	em.detach(emit);
 
     }
 }

@@ -1,10 +1,11 @@
-package com.fatr.model;
+package com.fatr.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.RollbackException;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fatr.dao.SerieDao;
+import com.fatr.model.Serie;
+import com.fatr.model.SerieId;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration(locations = "/spring/test-application.xml")
-public class SerieTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class SerieDaoTest {
+    @Autowired
+    private SerieDao dao;
     @Autowired
     private EntityManager em;
 
@@ -31,11 +35,11 @@ public class SerieTest {
     @Test
     public void testA_insert() {
 
-	em.getTransaction().begin();
-	new SerieDao(em).cadastrar(serie);
-	em.getTransaction().commit();
+	dao.cadastrar(serie);
 
-	Serie serieFound = em.find(Serie.class, serie.getId());
+	Serie serieFound = dao.buscaPeloId(serie.getId());
+
+	MatcherAssert.assertThat(serieFound, Matchers.notNullValue());
 
 	MatcherAssert.assertThat(serie.getId(), Matchers.equalTo(serieFound.getId()));
 	MatcherAssert.assertThat(serie.getId().getId_emit(), Matchers.equalTo(serieFound.getId().getId_emit()));
@@ -46,28 +50,32 @@ public class SerieTest {
 	em.detach(serie);
     }
 
-    @Test(expected = RollbackException.class)
-    public void testB_insert_duplicate_primary_key() {
+    @Test
+    public void testA1_buscaUsuarioNaoEncontrado() {
 
-	em.getTransaction().begin();
-	new SerieDao(em).cadastrar(serie);
-	em.getTransaction().commit();
+	Serie serie = dao.buscaPeloId(id);
+
+	MatcherAssert.assertThat(serie, Matchers.nullValue());
+
+    }
+
+    @Test
+    public void testB_insert_duplicate_primary_key() {
+	Assert.assertThrows(RollbackException.class, () -> dao.cadastrar(serie));
 
     }
 
     @Test
     public void testC_insert_delete() {
-
 	Serie serie = em.find(Serie.class, id);
 
 	MatcherAssert.assertThat(serie, Matchers.notNullValue());
 
-	em.getTransaction().begin();
-	em.remove(serie);
-	em.getTransaction().commit();
+	dao.apagar(serie);
 
 	serie = em.find(Serie.class, id);
 
 	MatcherAssert.assertThat(serie, Matchers.nullValue());
     }
+
 }
