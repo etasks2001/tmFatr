@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+
+	<!-- <context:annotation-config /> -->
+	<!-- <context:component-scan base-package="br.com.casadocodigo" /> -->
+
+	<bean id="serieId" class="com.fatr.model.SerieId">
+		<constructor-arg index="0" value="1" />
+		<constructor-arg index="1" value="55" />
+	</bean>
+
+	<bean id="serie" class="com.fatr.model.Serie">
+		<constructor-arg index="0" ref="serieId" />
+		<constructor-arg index="1" value="791" />
+		<constructor-arg index="2" value="900" />
+	</bean>
+
+
+	<bean id="persistence" class="javax.persistence.Persistence" factory-method="createEntityManagerFactory">
+		<constructor-arg index="0" value="nf" />
+	</bean>
+
+
+	<bean id="entityManager" factory-bean="persistence" factory-method="createEntityManager" class="javax.persistence.EntityManager"/>
+
+
+
+</beans>
