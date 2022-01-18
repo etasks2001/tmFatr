@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fatr.util.builder.EmitBuilder;
+import com.fatr.util.builder.EnderBuilder;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/spring/test-application.xml")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

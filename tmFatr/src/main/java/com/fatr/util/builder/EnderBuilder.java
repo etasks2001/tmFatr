@@ -1,4 +1,6 @@
-package com.fatr.model;
+package com.fatr.util.builder;
+
+import com.fatr.model.Ender;
 
 public class EnderBuilder {
     private Ender ender;

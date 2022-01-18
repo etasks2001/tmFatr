@@ -1,4 +1,7 @@
-package com.fatr.model;
+package com.fatr.util.builder;
+
+import com.fatr.model.Emit;
+import com.fatr.model.Ender;
 
 public class EmitBuilder {
 
